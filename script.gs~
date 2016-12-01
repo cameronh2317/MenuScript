@@ -27,14 +27,9 @@ function changeName(){
 
 function strippedName(name){
   var newName;
-  if (name.match(/(\d\d-\d\d-\d\d\d\d \d\d:\d\d:\d\d)/)) {
-    newName = name.substring(20, name.length); 
-    return newName;
-   } else {
-    return name   
-  }
+  newName = name.substring(20, name.length);
+  return newName;
 }
-
 
 
 function zeroPadding(num) {

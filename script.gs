@@ -47,7 +47,7 @@ function zeroPadding(num) {
 }
 
 function onOpen(){
-  SpreadsheetApp.getUi().createMenu('Save').addItem('Save with timestamp', 'changeName').addToUi();
+  SpreadsheetApp.getUi().createMenu('TimeStamp').addItem('Rename with timestamp', 'changeName').addToUi();
 }
     
 

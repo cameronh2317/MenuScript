@@ -27,9 +27,14 @@ function changeName(){
 
 function strippedName(name){
   var newName;
-  newName = name.substring(20, name.length);
-  return newName;
+  if (name.match(/(\d\d-\d\d-\d\d\d\d \d\d:\d\d:\d\d)/)) {
+    newName = name.substring(20, name.length); 
+    return newName;
+   } else {
+    return name   
+  }
 }
+
 
 
 function zeroPadding(num) {
@@ -42,7 +47,7 @@ function zeroPadding(num) {
 }
 
 function onOpen(){
-  SpreadsheetApp.getUi().createMenu('Save').addItem('Save with timestamp', 'changeName').addToUi();
+  SpreadsheetApp.getUi().createMenu('TimeStamp').addItem('Save with timestamp', 'changeName').addToUi();
 }
     
 

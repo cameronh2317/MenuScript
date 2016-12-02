@@ -15,20 +15,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 function changeName(){
   var ss = SpreadsheetApp.getActive();
   var name = ss.getName().valueOf();
-  var date = new Date();
-  var mon = zeroPadding(date.getMonth());
-  var day = zeroPadding(date.getDate());
-  var year = date.getYear();
-  var hours = zeroPadding(date.getHours());
-  var min = zeroPadding(date.getMinutes());
-  var sec = zeroPadding(date.getSeconds());
-  ss.rename(mon + "-" + day + "-" + year + " " + hours + ":" + min + ":" + sec + " " + strippedName(name) );
+  ss.rename(timeStamp() + " " + strippedName(name) );
 }
 
 function strippedName(name){
   var newName;
   if (name.match(/(\d\d-\d\d-\d\d\d\d \d\d:\d\d:\d\d)/)) {
-    newName = name.substring(20, name.length); 
+    newName = name.replace(/(\d\d-\d\d-\d\d\d\d \d\d:\d\d:\d\d)/, ""); 
     return newName;
    } else {
     return name   
@@ -45,9 +38,20 @@ function zeroPadding(num) {
     return num;
   }
 }
+function timeStamp(){
+  var stamp;
+  var date = new Date();
+  var mon = zeroPadding(date.getMonth()+1);
+  var day = zeroPadding(date.getDate());
+  var year = date.getYear();
+  var hours = zeroPadding(date.getHours());
+  var min = zeroPadding(date.getMinutes());
+  var sec = zeroPadding(date.getSeconds());
+  stamp = mon + "-" + day + "-" + year + " " + hours + ":" + min + ":" + sec;
+  return stamp;
+}
 
 function onOpen(){
   SpreadsheetApp.getUi().createMenu('TimeStamp').addItem('Rename with timestamp', 'changeName').addToUi();
 }
     
-
